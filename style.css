@@ -1,0 +1,104 @@
+body {
+  background-color: rgb(19, 18, 18);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  font-weight: bold;
+}
+
+#title {
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#subtitle {
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  cursor: default;
+  white-space: pre-wrap;
+}
+
+#subtitle .hop-letter {
+  display: inline-block;
+  margin-right: 0.05em;
+}
+
+#subtitle .hop-letter.animate {
+  animation-name: hop;
+  animation-duration: 600ms;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes hop {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.card {
+  border: solid 2px white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border-radius: 20px;
+  width: auto;
+  min-width: 300px;
+  max-width: 700px;
+  margin: 20px auto;
+  padding-left: 25px;
+  padding-right: 90px;
+  background-color: rgb(0, 0, 0);
+  transition: transform 0.3s ease;
+
+}
+
+.image1 {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.mhm {
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.price {
+  color: rgb(27, 202, 27);
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card:active {
+  transform: translateY(2px);
+}
+
+.important {
+  color: red;
+  font-weight: bold;
+}

@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   </head>
-  <div id="cart-toast" class="cart-toast hidden">✅ Item added to your cart</div>
   <body>
+     <div id="cart-toast" class="cart-toast hidden">✅ Item added to your cart</div>
     <div class="header">
       <h1 id="title">Kaidens B-Day Wishlist</h1>
       <h5 id="subtitle">wishlist by kaiden website made by sexyplankton</h5>
@@ -24,9 +24,11 @@
   </div>
 </div>
 
-    <div class="hugecontainer" id="content">
-
-       <div class="card" data-name="GameSir Nova Lite" data-price="24.99" data-url="https://www.amazon.com/dp/B0CMCPY4VG">
+<div class="mostimportant">
+  <div style="grid-column: 1 / -1;">
+    <h1 class="title">⭐ Kaidens Most Wanted List ⭐ </h1>
+  </div>
+             <div class="card" data-name="GameSir Nova Lite" data-price="24.99" data-url="https://www.amazon.com/dp/B0CMCPY4VG">
       <img class="image1" src="images/vro.png" alt="GameSir Nova Lite">
       <div class="mhm">
         <h3 class="title1">GameSir Nova Lite</h3>
@@ -35,8 +37,7 @@
         <button class="add-to-cart">Add to Cart</button>
       </div>
     </div>
-
-         <div class="card" data-name="GameSir Nova Pro" data-price="29.99" data-url="https://www.amazon.com/gp/product/B0CMCQ3684/ref=ox_sc_act_title_1?smid=AR3TXMPBATNVQ&psc=1">
+       <div class="card" data-name="GameSir Nova Pro" data-price="29.99" data-url="https://www.amazon.com/gp/product/B0CMCQ3684/ref=ox_sc_act_title_1?smid=AR3TXMPBATNVQ&psc=1">
       <img class="image1" src="images/vrah.png" alt="GameSir Nova Pro">
       <div class="mhm">
         <h3 class="title1">GameSir Nova Pro</h3>
@@ -45,8 +46,7 @@
         <button class="add-to-cart">Add to Cart</button>
       </div>
     </div>
-
-    <div class="card" data-name="The Legend of Zelda Tears of the Kingdom" data-price="69.99" data-url="https://zelda.nintendo.com/tears-of-the-kingdom/en/buy/">
+          <div class="card" data-name="The Legend of Zelda Tears of the Kingdom" data-price="69.99" data-url="https://zelda.nintendo.com/tears-of-the-kingdom/en/buy/">
   <img class="image1" src="images/images.jpg" alt="Zelda Tears of the Kingdom">
   <div class="mhm">
     <h3 class="title1">The Legend of Zelda Tears of the Kingdom</h3>
@@ -75,29 +75,15 @@
     <button class="add-to-cart">Add to Cart</button>
   </div>
 </div>
+      </div>
 
-<div class="card" data-name="HDMI cable" data-price="13.99" data-url="https://www.amazon.com/gp/product/B086YSDKZ1/ref=ox_sc_act_title_1?smid=A1TT9V691HS966&th=1">
-  <img class="image1" src="images/cable.png" alt="HDMI Cable">
-  <div class="mhm">
-    <h3 class="title1">HDMI cable</h3>
-    <p class="price">$13.99</p>
-    <p class="description">An HDMI cable for better internet and download speed.</p>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
-
-<div class="card" data-name="Switch Screen Protector" data-price="7.40" data-url="https://www.amazon.com/Protector-Transparent-Anti-Scratch-Compatible-Replacement-3ds/dp/B0795GHTBC/ref=sr_1_9?crid=1SGZQ3PLYJ1M9&qid=1748229988&s=electronics&sprefix=nintendo+a%2Celectronics%2C143&sr=1-9">
-  <img class="image1" src="images/amazon.png" alt="Switch Screen Protector">
-  <div class="mhm">
-    <h3 class="title1">Switch Screen Protector</h3>
-    <p class="price">$7.40</p>
-    <p class="description">Something to protect my Switch screen from scratches and damage.</p>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
 
     </div>
        <noscript>turn on javascript</noscript>
+
+       <div class="redirect" onclick="location.href='nice.html'">
+        <button class="hm2">Go to Nice to have page? -> </button>
+       </div>
     <script>
       const subtitle = document.getElementById('subtitle');
       const text = subtitle.textContent;
@@ -139,7 +125,7 @@
         if (document.body.classList.contains('rgb-mode')) return;
 
         const duration = 3000;
-        const end = Date.now() + duration;
+       const end = Date.now() + duration;
 
         const frame = () => {
           confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });

@@ -8,65 +8,64 @@
     <div class="header">
       <h1 id="title">Kaidens B-Day Wishlist</h1>
       <h5 id="subtitle">wishlist by kaiden website by sexyplankton</h5>
+      <div id="countdown"></div>
     </div>
       
-     <div class="hugecontainer">
+    <div class="hugecontainer">
       <a href="https://www.amazon.com/dp/B0CMCPY4VG/ref=twister_B0CMCPSRX2?_encoding=UTF8&th=1" class="card" target="_blank">
         <img class="image1" src="images/vro.png" alt="hmmm">
         <div class="mhm">
           <h3 class="title1">GameSir Nova Lite</h3>
-        <p class="price">Price: $24.99</p>
-        <p class="description">Great Controller I would love to have this. </p>
+          <p class="price">Price: $24.99</p>
+          <p class="description">Great Controller I would love to have this. </p>
         </div>
       </a>
       <a href="https://www.amazon.com/gp/product/B0CMCQ3684/ref=ox_sc_act_title_1?smid=AR3TXMPBATNVQ&psc=1" class="card" target="_blank">
         <img class="image1" src="images/vrah.png" alt="hmmm">
         <div class="mhm">
           <h3 class="title1">GameSir Nova Pro</h3>
-        <p class="price">Price: $29.99</p>
-        <p class="description">More Expensive but better </p>
+          <p class="price">Price: $29.99</p>
+          <p class="description">More Expensive but better </p>
         </div>
       </a>
       <a href="https://zelda.nintendo.com/tears-of-the-kingdom/en/buy/" class="card" target="_blank">
         <img class="image1" src="images/images.jpg" alt="hmmm">
         <div class="mhm">
           <h3 class="title1">The Legend of Zelda Tears of the Kingdom</h3>
-        <p class="price">Price: $69.99</p>
-        <p class="description">This is the continuation to legend of zelda breath of the wild, I would love to be able to play this on my switch, I would love this very much. </p>
+          <p class="price">Price: $69.99</p>
+          <p class="description">This is the continuation to legend of zelda breath of the wild, I would love to be able to play this on my switch, I would love this very much. </p>
         </div>
       </a>
       <a href="https://zelda.nintendo.com/breath-of-the-wild/buy-now/" class="card" target="_blank">
         <img class="image1" src="images/okie.jpg" alt="hmmm">
         <div class="mhm">
           <h3 class="title1">The Legend of Zelda Breath of the Wild</h3>
-        <p class="price">Price: $59.99</p>
-        <p class="description">I know this might be confusing but I love this so much to have both zelda games but this isnt something that has to happen.</p>
+          <p class="price">Price: $59.99</p>
+          <p class="description">I know this might be confusing but I love this so much to have both zelda games but this isnt something that has to happen.</p>
         </div>
       </a>
       <a href="https://www.amazon.com/gp/product/B089VTYNF7/ref=ox_sc_act_title_1?smid=A1UVTGP6WV0D1P&th=1" class="card" target="_blank">
         <img class="image1" src="images/card.jpg" alt="hmmm">
         <div class="mhm">
           <h3 class="title1">Micro SD card</h3>
-        <p class="price">Price: $13.99</p>
-        <p class="description"><span class="important">! This is very important !</span> This would allow me to install games and not be left with no storage.  </p>
+          <p class="price">Price: $13.99</p>
+          <p class="description"><span class="important">! This is very important !</span> This would allow me to install games and not be left with no storage.  </p>
         </div>
       </a>
-        <a href="https://www.amazon.com/gp/product/B086YSDKZ1/ref=ox_sc_act_title_1?smid=A1TT9V691HS966&th=1" class="card" target="_blank">
+      <a href="https://www.amazon.com/gp/product/B086YSDKZ1/ref=ox_sc_act_title_1?smid=A1TT9V691HS966&th=1" class="card" target="_blank">
         <img class="image1" src="images/cable.png" alt="hmmm">
         <div class="mhm">
           <h3 class="title1">HDMI cable</h3>
-        <p class="price">Price: $6.99</p>
-        <p class="description">A HDMI cable for better internet and download speed </p>
+          <p class="price">Price: $13.99</p>
+          <p class="description">A HDMI cable for better internet and download speed </p>
         </div>
       </a>
-     </div>
-
+    </div>
 
     <script>
       const subtitle = document.getElementById('subtitle');
       const text = subtitle.textContent;
       subtitle.textContent = '';
-
       for (let i = 0; i < text.length; i++) {
         const char = text[i];
         if (char === ' ') {
@@ -80,22 +79,39 @@
         subtitle.appendChild(span);
       }
 
-      const animationDuration = 600; 
-      const delayBetweenLetters = 150; 
-      const pauseBetweenWaves = 2000; 
+      const animationDuration = 600;
+      const delayBetweenLetters = 150;
+      const pauseBetweenWaves = 2000;
       const totalDuration = animationDuration + delayBetweenLetters * text.length + pauseBetweenWaves;
 
       function restartAnimation() {
         const spans = subtitle.querySelectorAll('.hop-letter');
         spans.forEach(span => {
           span.classList.remove('animate');
-          void span.offsetWidth; 
+          void span.offsetWidth;
           span.classList.add('animate');
         });
       }
 
       restartAnimation();
       setInterval(restartAnimation, totalDuration);
+
+      const countdownEl = document.getElementById("countdown");
+      function updateCountdown() {
+        const now = new Date();
+        const target = new Date(now.getFullYear(), 7, 9);
+        if (now > target) {
+          target.setFullYear(target.getFullYear() + 1);
+        }
+        const diff = target - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        countdownEl.textContent = ` Countdown to Kaidens Birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     </script>
   </body>
 </html>

@@ -13,12 +13,14 @@ body {
 
 #title {
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #subtitle {
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   cursor: default;
   white-space: pre-wrap;
 }
@@ -36,14 +38,6 @@ body {
   animation-iteration-count: 1;
 }
 
-#countdown {
-  text-align: center;
-  color: white;
-  font-size: 1.5em;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  margin-top: 10px;
-}
-
 @keyframes hop {
 
   0%,
@@ -56,6 +50,15 @@ body {
   }
 }
 
+#countdown {
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 10px;
+}
+
 a {
   text-decoration: none;
 }
@@ -66,7 +69,8 @@ a {
   justify-content: flex-start;
   align-items: center;
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   border-radius: 20px;
   width: auto;
   min-width: 300px;
@@ -76,6 +80,14 @@ a {
   padding-right: 90px;
   background-color: rgb(0, 0, 0);
   transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card:active {
+  transform: translateY(2px);
 }
 
 .image1 {
@@ -88,21 +100,15 @@ a {
 
 .mhm {
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .price {
   color: rgb(27, 202, 27);
   font-weight: bold;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-}
-
-.card:active {
-  transform: translateY(2px);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
 .important {
@@ -110,6 +116,87 @@ a {
   font-weight: bold;
 }
 
-#countdown {
-  color: rgb(241, 56, 56);
+.rgb-mode * {
+  animation: rainbow 2s infinite linear;
+}
+
+@keyframes rainbow {
+  0% {
+    color: red;
+  }
+
+  16% {
+    color: orange;
+  }
+
+  33% {
+    color: yellow;
+  }
+
+  50% {
+    color: green;
+  }
+
+  66% {
+    color: blue;
+  }
+
+  83% {
+    color: indigo;
+  }
+
+  100% {
+    color: violet;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.rgb-mode {
+  background: linear-gradient(270deg,
+      #ff5f6d,
+      #ffc371,
+      #42e695,
+      #3bb2b8,
+      #ff9966,
+      #ff5e62,
+      #7f00ff,
+      #e100ff,
+      #ff5f6d);
+  background-size: 1800% 1800%;
+  animation: gradientShift 20s ease infinite;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background 1s ease;
+}
+
+.rgb-mode .card {
+  background: linear-gradient(135deg,
+      #ff5f6d,
+      #ffc371,
+      #42e695,
+      #3bb2b8,
+      #ff9966,
+      #ff5e62,
+      #7f00ff,
+      #e100ff);
+  animation: gradientShift 10s ease infinite;
+  background-size: 300% 300%;
+  border-color: white;
+}
+
+.rgb-mode body {
+  background-color: transparent;
 }

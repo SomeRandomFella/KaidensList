@@ -3,6 +3,7 @@
   <head>
     <title>Kaidens B-Day Wishlist</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   </head>
   <body>
     <div class="header">
@@ -10,8 +11,8 @@
       <h5 id="subtitle">wishlist by kaiden website by sexyplankton</h5>
       <div id="countdown"></div>
     </div>
-      
-    <div class="hugecontainer">
+
+    <div class="hugecontainer" id="content">
       <a href="https://www.amazon.com/dp/B0CMCPY4VG/ref=twister_B0CMCPSRX2?_encoding=UTF8&th=1" class="card" target="_blank">
         <img class="image1" src="images/vro.png" alt="hmmm">
         <div class="mhm">
@@ -97,21 +98,70 @@
       setInterval(restartAnimation, totalDuration);
 
       const countdownEl = document.getElementById("countdown");
-      function updateCountdown() {
-        const now = new Date();
-        const target = new Date(now.getFullYear(), 7, 9);
-        if (now > target) {
-          target.setFullYear(target.getFullYear() + 1);
-        }
-        const diff = target - now;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-        countdownEl.textContent = ` Countdown to Kaidens Birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      let celebrationStarted = false;
+
+      function triggerCelebration() {
+        if (document.body.classList.contains('rgb-mode')) return;
+
+        const duration = 3000;
+        const end = Date.now() + duration;
+
+        const frame = () => {
+          confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+          confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+          if (Date.now() < end) requestAnimationFrame(frame);
+        };
+        frame();
+
+        setTimeout(() => {
+          document.documentElement.classList.add('rgb-mode');
+        }, duration);
       }
+
+      function updateCountdown(forceCelebrate = false) {
+        const now = new Date();
+        const target = new Date(now.getFullYear(), 7, 9, 0, 0, 0);
+        const midnight = new Date(now.getFullYear(), 7, 10, 0, 0, 0);
+
+        if (now >= midnight) {
+          document.body.innerHTML = '<h1 style="color: white; text-align: center; margin-top: 20%;">Birthday\'s over! Gonna have to wait till next year</h1>';
+          return;
+        }
+
+        if (!celebrationStarted && (now >= target || forceCelebrate)) {
+          celebrationStarted = true;
+          triggerCelebration();
+        }
+
+        const diff = target - now;
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+          countdownEl.textContent = `Countdown to Kaidens Birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        } else {
+          countdownEl.textContent = "🎉 Happy Birthday Kaiden! 🎉";
+        }
+      }
+
       updateCountdown();
       setInterval(updateCountdown, 1000);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'w') {
+          if (!celebrationStarted) {
+            celebrationStarted = true;
+            triggerCelebration();
+            countdownEl.textContent = "🎉 Happy Birthday Kaiden! 🎉";
+          }
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'e') {
+    document.body.innerHTML = '<h1 style="color: white; text-align: center; margin-top: 20%; font-family: Arial;">Birthday\'s over! Gonna have to wait till next year :( </h1> ';
+  }
+});
     </script>
   </body>
 </html>

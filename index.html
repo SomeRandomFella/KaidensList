@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   </head>
+  <div id="cart-toast" class="cart-toast hidden">✅ Item added to your cart</div>
   <body>
     <div class="header">
       <h1 id="title">Kaidens B-Day Wishlist</h1>
@@ -12,63 +13,89 @@
       <div id="countdown"></div>
     </div>
 
+<div id="cart" class="cart">
+  <button id="cart-toggle" class="cart-button">
+    🛒 View Wishlist (<span id="cart-count">0</span>)
+  </button>
+  <div id="cart-items" class="cart-items hidden">
+    <div id="cart-list"></div>
+    <div id="cart-total" class="cart-total"></div>
+    <button id="clear-cart" class="clear-cart">🧹 Clear Wishlist</button>
+  </div>
+</div>
+
     <div class="hugecontainer" id="content">
-      <a href="https://www.amazon.com/dp/B0CMCPY4VG/ref=twister_B0CMCPSRX2?_encoding=UTF8&th=1" class="card" target="_blank">
-        <img class="image1" src="images/vro.png" alt="hmmm">
-        <div class="mhm">
-          <h3 class="title1">GameSir Nova Lite</h3>
-          <p class="price">Price: $24.99</p>
-          <p class="description">Great Controller I would love to have this. </p>
-        </div>
-      </a>
-      <a href="https://www.amazon.com/gp/product/B0CMCQ3684/ref=ox_sc_act_title_1?smid=AR3TXMPBATNVQ&psc=1" class="card" target="_blank">
-        <img class="image1" src="images/vrah.png" alt="hmmm">
-        <div class="mhm">
-          <h3 class="title1">GameSir Nova Pro</h3>
-          <p class="price">Price: $29.99</p>
-          <p class="description">More Expensive but better </p>
-        </div>
-      </a>
-      <a href="https://zelda.nintendo.com/tears-of-the-kingdom/en/buy/" class="card" target="_blank">
-        <img class="image1" src="images/images.jpg" alt="hmmm">
-        <div class="mhm">
-          <h3 class="title1">The Legend of Zelda Tears of the Kingdom</h3>
-          <p class="price">Price: $69.99</p>
-          <p class="description">This is the continuation to legend of zelda breath of the wild, I would love to be able to play this on my switch, I would love this very much. </p>
-        </div>
-      </a>
-      <a href="https://zelda.nintendo.com/breath-of-the-wild/buy-now/" class="card" target="_blank">
-        <img class="image1" src="images/okie.jpg" alt="hmmm">
-        <div class="mhm">
-          <h3 class="title1">The Legend of Zelda Breath of the Wild</h3>
-          <p class="price">Price: $59.99</p>
-          <p class="description">I know this might be confusing but I love this so much to have both zelda games but this isnt something that has to happen.</p>
-        </div>
-      </a>
-      <a href="https://www.amazon.com/gp/product/B089VTYNF7/ref=ox_sc_act_title_1?smid=A1UVTGP6WV0D1P&th=1" class="card" target="_blank">
-        <img class="image1" src="images/card.jpg" alt="hmmm">
-        <div class="mhm">
-          <h3 class="title1">Micro SD card</h3>
-          <p class="price">Price: $13.99</p>
-          <p class="description"><span class="important">! This is very important !</span> This would allow me to install games and not be left with no storage.  </p>
-        </div>
-      </a>
-      <a href="https://www.amazon.com/gp/product/B086YSDKZ1/ref=ox_sc_act_title_1?smid=A1TT9V691HS966&th=1" class="card" target="_blank">
-        <img class="image1" src="images/cable.png" alt="hmmm">
-        <div class="mhm">
-          <h3 class="title1">HDMI cable</h3>
-          <p class="price">Price: $13.99</p>
-          <p class="description">A HDMI cable for better internet and download speed </p>
-        </div>
-      </a>
-      <a href="https://www.amazon.com/Protector-Transparent-Anti-Scratch-Compatible-Replacement-3ds/dp/B0795GHTBC/ref=sr_1_9?crid=1SGZQ3PLYJ1M9&qid=1748229988&s=electronics&sprefix=nintendo+a%2Celectronics%2C143&sr=1-9" class="card" target="_blank">
-        <img class="image1" src="images/amazon.png" alt="hmmm">
-        <div class="mhm">
-          <h3 class="title1">Switch Screen Protector</h3>
-          <p class="price">Price: $7.40</p>
-          <p class="description">Something to protect my switch</p>
-        </div>
-      </a>
+
+       <div class="card" data-name="GameSir Nova Lite" data-price="24.99" data-url="https://www.amazon.com/dp/B0CMCPY4VG">
+      <img class="image1" src="images/vro.png" alt="GameSir Nova Lite">
+      <div class="mhm">
+        <h3 class="title1">GameSir Nova Lite</h3>
+        <p class="price">$24.99</p>
+        <p class="description">Great Controller I would love to have this. Comes at a cheap price compared to others.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+
+         <div class="card" data-name="GameSir Nova Pro" data-price="29.99" data-url="https://www.amazon.com/gp/product/B0CMCQ3684/ref=ox_sc_act_title_1?smid=AR3TXMPBATNVQ&psc=1">
+      <img class="image1" src="images/vrah.png" alt="GameSir Nova Pro">
+      <div class="mhm">
+        <h3 class="title1">GameSir Nova Pro</h3>
+        <p class="price">$29.99</p>
+        <p class="description">More Expensive but better and the difference in performance is worth it for such a small price difference.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card" data-name="The Legend of Zelda Tears of the Kingdom" data-price="69.99" data-url="https://zelda.nintendo.com/tears-of-the-kingdom/en/buy/">
+  <img class="image1" src="images/images.jpg" alt="Zelda Tears of the Kingdom">
+  <div class="mhm">
+    <h3 class="title1">The Legend of Zelda Tears of the Kingdom</h3>
+    <p class="price">$69.99</p>
+    <p class="description">This is the continuation to Legend of Zelda Breath of the Wild. I would love to be able to play this on my Switch!</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="card" data-name="The Legend of Zelda Breath of the Wild" data-price="59.99" data-url="https://zelda.nintendo.com/breath-of-the-wild/buy-now/">
+  <img class="image1" src="images/okie.jpg" alt="Zelda Breath of the Wild">
+  <div class="mhm">
+    <h3 class="title1">The Legend of Zelda Breath of the Wild</h3>
+    <p class="price">$59.99</p>
+    <p class="description">I know this might be confusing but I’d love to have both Zelda games! This isn’t necessary, but I’d really enjoy it.</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="card" data-name="Micro SD card" data-price="13.99" data-url="https://www.amazon.com/gp/product/B089VTYNF7/ref=ox_sc_act_title_1?smid=A1UVTGP6WV0D1P&th=1">
+  <img class="image1" src="images/card.jpg" alt="Micro SD Card">
+  <div class="mhm">
+    <h3 class="title1">Micro SD card</h3>
+    <p class="price">$13.99</p>
+    <p class="description"><span class="important">! This is very important !</span> This would allow me to install games and not be left with no storage.</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="card" data-name="HDMI cable" data-price="13.99" data-url="https://www.amazon.com/gp/product/B086YSDKZ1/ref=ox_sc_act_title_1?smid=A1TT9V691HS966&th=1">
+  <img class="image1" src="images/cable.png" alt="HDMI Cable">
+  <div class="mhm">
+    <h3 class="title1">HDMI cable</h3>
+    <p class="price">$13.99</p>
+    <p class="description">An HDMI cable for better internet and download speed.</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="card" data-name="Switch Screen Protector" data-price="7.40" data-url="https://www.amazon.com/Protector-Transparent-Anti-Scratch-Compatible-Replacement-3ds/dp/B0795GHTBC/ref=sr_1_9?crid=1SGZQ3PLYJ1M9&qid=1748229988&s=electronics&sprefix=nintendo+a%2Celectronics%2C143&sr=1-9">
+  <img class="image1" src="images/amazon.png" alt="Switch Screen Protector">
+  <div class="mhm">
+    <h3 class="title1">Switch Screen Protector</h3>
+    <p class="price">$7.40</p>
+    <p class="description">Something to protect my Switch screen from scratches and damage.</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
     </div>
        <noscript>turn on javascript</noscript>
     <script>
@@ -170,6 +197,82 @@
     document.body.innerHTML = '<h1 style="color: white; text-align: center; margin-top: 20%; font-family: Arial;">Birthday\'s over! Gonna have to wait till next year :( </h1> ';
   }
 });
+ const cartCount = document.getElementById('cart-count');
+    const cartItemsDiv = document.getElementById('cart-items');
+    const cartList = document.getElementById('cart-list');
+    const cartTotal = document.getElementById('cart-total');
+    const clearCartBtn = document.getElementById('clear-cart');
+    const cartToggleBtn = document.getElementById('cart-toggle');
+
+    let cart = JSON.parse(localStorage.getItem('kaidenCart')) || [];
+
+    function updateCartDisplay() {
+      cartCount.textContent = cart.length;
+
+      if (cart.length === 0) {
+        cartList.innerHTML = "<div class='empty-message'>No items in wishlist.</div>";
+        cartTotal.textContent = "";
+        clearCartBtn.style.display = "none";
+        return;
+      }
+
+      clearCartBtn.style.display = "block";
+      const total = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+
+      cartList.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          <div class="item-name">${item.name}</div>
+          <a class="item-link" href="${item.url}" target="_blank">Buy Now</a>
+          <span class="item-price">$${parseFloat(item.price).toFixed(2)}</span>
+          <span class="remove-item" data-index="${index}">❌</span>
+        </div>
+      `).join('');
+
+      cartTotal.innerHTML = `<strong>Total: $${total.toFixed(2)}</strong>`;
+      localStorage.setItem('kaidenCart', JSON.stringify(cart));
+    }
+
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('add-to-cart')) {
+        const card = e.target.closest('.card');
+        const item = {
+          name: card.dataset.name,
+          price: card.dataset.price,
+          url: card.dataset.url
+        };
+        cart.push(item);
+         updateCartDisplay();
+         showCartToast();
+
+      }
+
+      if (e.target.id === 'cart-toggle') {
+        cartItemsDiv.classList.toggle('hidden');
+      }
+
+      if (e.target.classList.contains('remove-item')) {
+        const index = parseInt(e.target.dataset.index);
+        cart.splice(index, 1);
+        updateCartDisplay();
+      }
+
+      if (e.target.id === 'clear-cart') {
+        cart = [];
+        updateCartDisplay();
+      }
+    });
+
+    function showCartToast() {
+  const toast = document.getElementById('cart-toast');
+  toast.classList.add('show');
+  toast.classList.remove('hidden');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    toast.classList.add('hidden');
+  }, 2000); 
+}
+    updateCartDisplay();
     </script>
   </body>
 </html>

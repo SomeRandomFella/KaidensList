@@ -36,6 +36,14 @@ body {
   animation-iteration-count: 1;
 }
 
+#countdown {
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 10px;
+}
+
 @keyframes hop {
 
   0%,
@@ -68,7 +76,6 @@ a {
   padding-right: 90px;
   background-color: rgb(0, 0, 0);
   transition: transform 0.3s ease;
-
 }
 
 .image1 {
@@ -87,7 +94,7 @@ a {
 .price {
   color: rgb(27, 202, 27);
   font-weight: bold;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .card:hover {
@@ -101,4 +108,8 @@ a {
 .important {
   color: red;
   font-weight: bold;
+}
+
+#countdown {
+  color: rgb(241, 56, 56);
 }

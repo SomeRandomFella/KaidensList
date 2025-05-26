@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <title>Nice to Have</title>
+     <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+     <div id="cart-toast" class="cart-toast hidden">✅ Item added to your cart</div>
+    <div class="header">
+      <h1 id="title">Kaidens B-Day Wishlist</h1>
+      <h5 id="subtitle">wishlist by kaiden website made by sexyplankton</h5>
+      <div id="countdown"></div>
+    </div>
+
+<div id="cart" class="cart">
+  <button id="cart-toggle" class="cart-button">
+    🛒 View Wishlist (<span id="cart-count">0</span>)
+  </button>
+  <div id="cart-items" class="cart-items hidden">
+    <div id="cart-list"></div>
+    <div id="cart-total" class="cart-total"></div>
+    <button id="clear-cart" class="clear-cart">🧹 Clear Wishlist</button>
+  </div>
+</div>
+
+    <div class="hugecontainer" id="content">
+<div class="card" data-name="HDMI cable" data-price="13.99" data-url="https://www.amazon.com/gp/product/B086YSDKZ1/ref=ox_sc_act_title_1?smid=A1TT9V691HS966&th=1">
+  <img class="image1" src="images/cable.png" alt="HDMI Cable">
+  <div class="mhm">
+    <h3 class="title1">HDMI cable</h3>
+    <p class="price">$13.99</p>
+    <p class="description">An HDMI cable for better internet and download speed.</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="card" data-name="Switch Screen Protector" data-price="7.40" data-url="https://www.amazon.com/Protector-Transparent-Anti-Scratch-Compatible-Replacement-3ds/dp/B0795GHTBC/ref=sr_1_9?crid=1SGZQ3PLYJ1M9&qid=1748229988&s=electronics&sprefix=nintendo+a%2Celectronics%2C143&sr=1-9">
+  <img class="image1" src="images/amazon.png" alt="Switch Screen Protector">
+  <div class="mhm">
+    <h3 class="title1">Switch Screen Protector</h3>
+    <p class="price">$7.40</p>
+    <p class="description">Something to protect my Switch screen from scratches and damage.</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+</div>
+
+<div class="redirect" style="margin-top: 50px;" onclick="location.href= 'index.html';">
+  <button class="hm2">🏠 Go back to home?</button>
+</div>
+
+<script>
+  const subtitle = document.getElementById('subtitle');
+      const text = subtitle.textContent;
+      subtitle.textContent = '';
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (char === ' ') {
+          subtitle.appendChild(document.createTextNode(' '));
+          continue;
+        }
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.classList.add('hop-letter');
+        span.style.animationDelay = `${i * 0.15}s`;
+        subtitle.appendChild(span);
+      }
+
+      const animationDuration = 600;
+      const delayBetweenLetters = 150;
+      const pauseBetweenWaves = 2000;
+      const totalDuration = animationDuration + delayBetweenLetters * text.length + pauseBetweenWaves;
+
+      function restartAnimation() {
+        const spans = subtitle.querySelectorAll('.hop-letter');
+        spans.forEach(span => {
+          span.classList.remove('animate');
+          void span.offsetWidth;
+          span.classList.add('animate');
+        });
+      }
+
+      restartAnimation();
+      setInterval(restartAnimation, totalDuration);
+
+      const countdownEl = document.getElementById("countdown");
+      let celebrationStarted = false;
+
+      function triggerCelebration() {
+        if (document.body.classList.contains('rgb-mode')) return;
+
+        const duration = 3000;
+        const end = Date.now() + duration;
+
+        const frame = () => {
+          confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+          confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+          if (Date.now() < end) requestAnimationFrame(frame);
+        };
+        frame();
+
+        setTimeout(() => {
+          document.documentElement.classList.add('rgb-mode');
+        }, duration);
+      }
+
+      function updateCountdown(forceCelebrate = false) {
+        const now = new Date();
+        const target = new Date(now.getFullYear(), 7, 9, 0, 0, 0);
+        const midnight = new Date(now.getFullYear(), 7, 10, 0, 0, 0);
+
+        if (now >= midnight) {
+          document.body.innerHTML = '<h1 style="color: white; text-align: center; margin-top: 20%;">Birthday\'s over! Gonna have to wait till next year</h1>';
+          return;
+        }
+
+        if (!celebrationStarted && (now >= target || forceCelebrate)) {
+          celebrationStarted = true;
+          triggerCelebration();
+        }
+
+        const diff = target - now;
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+          countdownEl.textContent = `Countdown to Kaidens Birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        } else {
+          countdownEl.textContent = "🎉 Happy Birthday Kaiden! 🎉";
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'w') {
+          if (!celebrationStarted) {
+            celebrationStarted = true;
+            triggerCelebration();
+            countdownEl.textContent = "🎉 Happy Birthday Kaiden! 🎉";
+          }
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'e') {
+    document.body.innerHTML = '<h1 style="color: white; text-align: center; margin-top: 20%; font-family: Arial;">Birthday\'s over! Gonna have to wait till next year :( </h1> ';
+  }
+});
+ const cartCount = document.getElementById('cart-count');
+    const cartItemsDiv = document.getElementById('cart-items');
+    const cartList = document.getElementById('cart-list');
+    const cartTotal = document.getElementById('cart-total');
+    const clearCartBtn = document.getElementById('clear-cart');
+    const cartToggleBtn = document.getElementById('cart-toggle');
+
+    let cart = JSON.parse(localStorage.getItem('kaidenCart')) || [];
+
+    function updateCartDisplay() {
+      cartCount.textContent = cart.length;
+
+      if (cart.length === 0) {
+        cartList.innerHTML = "<div class='empty-message'>No items in wishlist.</div>";
+        cartTotal.textContent = "";
+        clearCartBtn.style.display = "none";
+        return;
+      }
+
+      clearCartBtn.style.display = "block";
+      const total = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+
+      cartList.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          <div class="item-name">${item.name}</div>
+          <a class="item-link" href="${item.url}" target="_blank">Buy Now</a>
+          <span class="item-price">$${parseFloat(item.price).toFixed(2)}</span>
+          <span class="remove-item" data-index="${index}">❌</span>
+        </div>
+      `).join('');
+
+      cartTotal.innerHTML = `<strong>Total: $${total.toFixed(2)}</strong>`;
+      localStorage.setItem('kaidenCart', JSON.stringify(cart));
+    }
+
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('add-to-cart')) {
+        const card = e.target.closest('.card');
+        const item = {
+          name: card.dataset.name,
+          price: card.dataset.price,
+          url: card.dataset.url
+        };
+        cart.push(item);
+         updateCartDisplay();
+         showCartToast();
+
+      }
+
+      if (e.target.id === 'cart-toggle') {
+        cartItemsDiv.classList.toggle('hidden');
+      }
+
+      if (e.target.classList.contains('remove-item')) {
+        const index = parseInt(e.target.dataset.index);
+        cart.splice(index, 1);
+        updateCartDisplay();
+      }
+
+      if (e.target.id === 'clear-cart') {
+        cart = [];
+        updateCartDisplay();
+      }
+    });
+
+    function showCartToast() {
+  const toast = document.getElementById('cart-toast');
+  toast.classList.add('show');
+  toast.classList.remove('hidden');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    toast.classList.add('hidden');
+  }, 2000); 
+}
+    updateCartDisplay();
+</script>
+  </body>
+</html>
